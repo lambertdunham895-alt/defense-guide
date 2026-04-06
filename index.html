@@ -678,7 +678,7 @@ body {
         </div>
       </div>
     </div>
-    <div class="header-right"><span class="badge">29 Plays</span></div>
+    <div class="header-right"><span class="badge">72 Plays</span></div>
   </div>
   <div class="tabs">
     <button class="tab-btn active" data-tab="browse">Browse</button>
@@ -724,7 +724,10 @@ body {
         <td><button class="big-btn bypos-sit" data-sit="Runner on First">Runner on 1st<small>1 runner</small></button></td>
       </tr><tr style="height:6px"></tr><tr>
         <td><button class="big-btn bypos-sit" data-sit="Runner on Second">Runner on 2nd<small>1 runner</small></button></td>
+        <td><button class="big-btn bypos-sit" data-sit="Runner on Third">Runner on 3rd<small>1 runner</small></button></td>
+      </tr><tr style="height:6px"></tr><tr>
         <td><button class="big-btn bypos-sit" data-sit="Runners on 1st &amp; 2nd">1st &amp; 2nd<small>2 runners</small></button></td>
+        <td><button class="big-btn bypos-sit" data-sit="Runners on 1st &amp; 3rd">1st &amp; 3rd<small>2 runners</small></button></td>
       </tr></table>
     </div>
     <!-- Step 3: play type -->
@@ -733,6 +736,18 @@ body {
       <table class="type-grid"><tr>
         <td><button class="type-btn bypos-type" data-type="Fly ball">&#9650; Fly ball</button></td>
         <td><button class="type-btn bypos-type" data-type="Grounder">&#9660; Grounder</button></td>
+      </tr><tr style="height:6px"></tr><tr>
+        <td><button class="type-btn bypos-type" data-type="Single">&#127936; Single</button></td>
+        <td><button class="type-btn bypos-type" data-type="Double">&#128144; Double</button></td>
+      </tr><tr style="height:6px"></tr><tr>
+        <td><button class="type-btn bypos-type" data-type="Hit Down Line">&#8605; Hit Down Line</button></td>
+        <td><button class="type-btn bypos-type" data-type="Hit to Gap">&#8601; Hit to Gap</button></td>
+      </tr><tr style="height:6px"></tr><tr>
+        <td><button class="type-btn bypos-type" data-type="Shallow Fly">&#8599; Shallow Fly</button></td>
+        <td><button class="type-btn bypos-type" data-type="Bunt">&#9997; Bunt</button></td>
+      </tr><tr style="height:6px"></tr><tr>
+        <td><button class="type-btn bypos-type" data-type="Foul Pop-Up">&#10056; Foul Pop-Up</button></td>
+        <td><button class="type-btn bypos-type" data-type="Fly Out">&#10040; Fly Out</button></td>
       </tr></table>
     </div>
     <div class="play-picker" id="bypos-loc-picker"></div>
@@ -802,9 +817,9 @@ var PLAYS = [
   {t:"Fly ball",l:"LF",r:"Runner on First",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Make throw to 3B or cut off.",CF:"Back up LF.",RF:"Move into back up position behind 2B position."}},
   {t:"Fly ball",l:"CF",r:"Runner on First",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Back up CF.",CF:"Make throw to 3B or cut off.",RF:"Back up CF."}},
   {t:"Fly ball",l:"RF",r:"Runner on First",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Back up 3B.",CF:"Back up RF.",RF:"Make throw to 3B or cut off."}},
-  {t:"Fly ball",l:"LF",r:"Runner on Second",a:{P:"Move into back up position between 1B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Make throw to home or cut off.",CF:"Back up LF.",RF:"Move towards infield for possible back up."}},
-  {t:"Fly ball",l:"CF",r:"Runner on Second",a:{P:"Move into back up position between 1B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Back up CF.",CF:"Make throw to home or cut off.",RF:"Back up CF."}},
-  {t:"Fly ball",l:"RF",r:"Runner on Second",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"You are the cut off.",SS:"Cover 2B.",B3:"Cover 3B bag.",LF:"Move into back up position behind 3B.",CF:"Back up RF.",RF:"Make throw to home or cut off."}},
+  {t:"Fly ball",l:"LF",r:"Runner on Second",a:{P:"Move into back up position between 1B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"Cover 3B bag.",B3:"You are the cut off for a throw home.",LF:"Make throw to home or cut off.",CF:"Back up LF.",RF:"Move towards infield for possible back up."}},
+  {t:"Fly ball",l:"CF",r:"Runner on Second",a:{P:"Move into back up position behind Home plate.",C:"Protect home plate. Be ready for throw.",B1:"You are the cut off for a throw home.",B2:"Cover 1B.",SS:"Cover 2B.",B3:"Cover 3B bag.",LF:"Back up CF.",CF:"Make throw to home or cut off.",RF:"Back up CF."}},
+  {t:"Fly ball",l:"RF",r:"Runner on Second",a:{P:"Move into back up position behind Home plate.",C:"Protect home plate. Be ready for throw.",B1:"You are the cut off for a throw home.",B2:"Cover 1B.",SS:"Cover 2B.",B3:"Cover 3B bag.",LF:"Move into back up position behind 3B.",CF:"Back up RF.",RF:"Make throw to home or cut off."}},
   {t:"Grounder",l:"3B",r:"No Runners",a:{P:"Move into position to cover Home plate.",C:"Follow the runner to 1B to back up for over throw.",B1:"Cover 1B.",B2:"Cover 2B.",SS:"Back up 3B.",B3:"Field ball and throw to 1B.",LF:"Move into back up position behind 3B.",CF:"Move into back up position behind 2B.",RF:"Move into back up position behind 1B."}},
   {t:"Grounder",l:"SS",r:"No Runners",a:{P:"Move into position to cover 3B.",C:"Follow the runner to 1B to back up for over throw.",B1:"Cover 1B.",B2:"Cover 2B.",SS:"Field ball and throw to 1B.",B3:"Back up SS.",LF:"Move into back up position behind SS.",CF:"Move into back up position behind 2B.",RF:"Move into back up position behind 1B."}},
   {t:"Grounder",l:"2B",r:"No Runners",a:{P:"Move into position to cover Home Plate.",C:"Follow the runner to 1B to back up for over throw.",B1:"Cover 1B.",B2:"Field ball and throw to 1B.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind SS.",CF:"Move into back up position behind 2B.",RF:"Move into back up position behind 2B."}},
@@ -824,7 +839,48 @@ var PLAYS = [
   {t:"Grounder",l:"SS",r:"Runners on 1st & 2nd",a:{P:"Move into position to back up 3B.",C:"Protect Home Plate.",B1:"Cover 1B.",B2:"Cover 2B.",SS:"Field ball and throw to 3B.",B3:"Cover 3B.",LF:"Move into back up position behind SS.",CF:"Move into back up position behind 2B for over throw.",RF:"Move into back up position behind 2B."}},
   {t:"Grounder",l:"2B",r:"Runners on 1st & 2nd",a:{P:"Move into position to back up 3B.",C:"Protect Home Plate.",B1:"Cover 1B.",B2:"Field ball and throw to 3B.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Move into back up position behind 2B for over throw.",RF:"Move into back up position behind 2B."}},
   {t:"Grounder",l:"1B",r:"Runners on 1st & 2nd",a:{P:"Move into position to cover 1B.",C:"Protect Home Plate.",B1:"Field ball and run/throw to 1B. Watch runner at 3B.",B2:"Back up 1B.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Move into back up position behind 2B for over throw.",RF:"Move into back up position behind 1B."}},
-  {t:"Grounder",l:"P",r:"Runners on 1st & 2nd",a:{P:"Field ball and throw to 3B.",C:"Protect Home Plate.",B1:"Cover 1B.",B2:"Back up P.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Move into back up position behind 2B for over throw.",RF:"Move into back up position behind 1B."}}
+  {t:"Grounder",l:"P",r:"Runners on 1st & 2nd",a:{P:"Field ball and throw to 3B.",C:"Protect Home Plate.",B1:"Cover 1B.",B2:"Back up P.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Move into back up position behind 2B for over throw.",RF:"Move into back up position behind 1B."}},
+  {t:"Fly ball",l:"LF",r:"Runners on 1st & 2nd",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Make throw to home or cut off.",CF:"Back up LF.",RF:"Move towards infield for possible back up."}},
+  {t:"Fly ball",l:"CF",r:"Runners on 1st & 2nd",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Back up CF.",CF:"Make throw to home or cut off.",RF:"Back up CF."}},
+  {t:"Fly ball",l:"RF",r:"Runners on 1st & 2nd",a:{P:"Move into back up position between 3B and Home plate.",C:"Protect home plate. Be ready for throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B.",SS:"You are the cut off.",B3:"Cover 3B bag.",LF:"Back up 3B.",CF:"Back up RF.",RF:"Make throw to home or cut off."}},
+  {t:"Double",l:"RF",r:"No Runners",a:{P:"Back up home plate.",C:"Protect home plate.",B1:"Trail 30 feet behind second baseman.",B2:"Main cutoff in double cut lining up to 3B.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Move towards the ball.",RF:"Field the ball and hit cutoff."}},
+  {t:"Double",l:"Right Center",r:"No Runners",a:{P:"Back up third base.",C:"Protect Home Plate.",B1:"Cover 2B.",B2:"Main cutoff in double cut lining up to 3B.",SS:"Trail 30 feet behind second baseman.",B3:"Cover 3B.",LF:"Move into back up position behind 3B.",CF:"Field the ball and hit cutoff.",RF:"Move towards the ball."}},
+  {t:"Double",l:"Left Center",r:"No Runners",a:{P:"Back up third base.",C:"Protect Home Plate.",B1:"Cover 2B.",B2:"Trail 30 feet behind short stop.",SS:"Main cutoff in double cut lining up to 3B.",B3:"Cover 3B.",LF:"Move towards the ball.",CF:"Field the ball and hit cutoff.",RF:"Move into a back up position between first and second base."}},
+  {t:"Double",l:"LF",r:"No Runners",a:{P:"Back up third base on the home plate side.",C:"Protect Home Plate.",B1:"Cover 2B.",B2:"Trail 30 feet behind short stop.",SS:"Main cutoff in double cut lining up to 3B.",B3:"Cover 3B.",LF:"Field the ball and hit cutoff.",CF:"Move towards the ball.",RF:"Move into a back up position behind second base."}},
+  {t:"Double",l:"RF",r:"Runner on First",a:{P:"Back up home plate.",C:"Protect Home Plate.",B1:"Trail 30 feet behind second baseman.",B2:"Main cutoff in double cut lining up to home.",SS:"Move behind pitchers mound in case of possible play at 2B.",B3:"Cover 3B.",LF:"Move in to dirt behind SS.",CF:"Move towards the ball.",RF:"Field the ball and hit cutoff."}},
+  {t:"Double",l:"Right Center",r:"Runner on First",a:{P:"Back up home plate.",C:"Protect Home Plate.",B1:"Move in to the right of the pitchers mound to be the second cut if necessary.",B2:"Main cutoff in double cut lining up to home.",SS:"Trail 30 feet behind second baseman.",B3:"Cover 3B.",LF:"Move in to dirt behind SS.",CF:"Field the ball and hit cutoff.",RF:"Move towards the ball."}},
+  {t:"Double",l:"Left Center",r:"Runner on First",a:{P:"Back up home plate.",C:"Protect Home Plate.",B1:"Move in to the left of the pitchers mound to be the second cut if necessary.",B2:"Trail 30 feet behind short stop.",SS:"Main cutoff in double cut lining up to home.",B3:"Cover 3B.",LF:"Move towards the ball.",CF:"Field the ball and hit cutoff.",RF:"Move in to dirt behind 2B."}},
+  {t:"Double",l:"LF",r:"Runner on First",a:{P:"Back up home plate.",C:"Protect Home Plate.",B1:"Move in to the left of the pitchers mound to be the second cut if necessary.",B2:"Trail 30 feet behind short stop.",SS:"Main cutoff in double cut lining up to home.",B3:"Cover 3B.",LF:"Move towards the ball.",CF:"Field the ball and hit cutoff.",RF:"Move in to dirt behind 2B."}},
+  {t:"Bunt",l:"3B Side",r:"No Runners",a:{P:"Responsible for fielding bunts to the middle of infield.",C:"Responsible for anything right in front of the plate.",B1:"Cover 1B.",B2:"Cover 2B.",SS:"Back up Third Baseman and cover 3B.",B3:"Charge the ball and throw to 1B.",LF:"Move in towards the infield.",CF:"Move in towards the infield.",RF:"Back up 1B."}},
+  {t:"Bunt",l:"1B Side",r:"No Runners",a:{P:"Responsible for fielding bunts to the middle of infield.",C:"Responsible for anything right in front of the plate.",B1:"Charge the ball and throw to 1B.",B2:"Cover 1B.",SS:"Cover 2B.",B3:"Cover 3B.",LF:"Move in towards the infield.",CF:"Move in towards the infield.",RF:"Back up 1B."}},
+  {t:"Single",l:"LF",r:"No Runners",a:{P:"Move into back up position between mound and 2B.",C:"Follow the runner to 1B to back up for over throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Move into position to cover 2B, receive throw.",SS:"Line up relay throw from LF.",B3:"Stay close to 3B bag.",LF:"Make a good, hard, low throw to 2B. Make the throw low enough for the cut-off man to handle.",CF:"Back up LF.",RF:"Back up position toward infield."}},
+  {t:"Single",l:"CF",r:"No Runners",a:{P:"Move into back up position between mound and 2B.",C:"Follow the runner to 1B to back up for over throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"If ball is hit to SS side of 2B, cover the bag. If ball is hit to 2B side of the field, you are the cut off man.",SS:"If ball is hit to 2B side of 2B, cover the bag. If ball is hit to SS side of the field, you are the cut off man.",B3:"Stay close to 3B bag.",LF:"Back up CF.",CF:"Make a good, hard, low throw to 2B. Make the throw low enough for the cut-off man to handle.",RF:"Back up CF."}},
+  {t:"Single",l:"RF",r:"No Runners",a:{P:"Move into back up position between mound and SS position.",C:"Follow the runner to 1B to back up for over throw.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Line up relay throw from RF.",SS:"Cover 2B. Be ready for possible play.",B3:"Maintain position to possibly back up throw from RF, then Cover 3B.",LF:"Move into a possible back up position behind SS position.",CF:"Back up RF.",RF:"Make a good, hard, low throw to 2B. Make the throw low enough for the cut-off man to handle."}},
+  {t:"Single",l:"LF",r:"Runner on First",a:{P:"Back up position between 3B and home. Read the play to back up 3B or possibly home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Cut-off man. Move into a position for relay throw from LF to 3B.",B3:"Cover 3B. Be ready for possible throw from LF.",LF:"Make a good, hard, low throw to 3B. Make the throw low enough for the cut-off man to handle.",CF:"Back up LF.",RF:"Move to back up position near 2B."}},
+  {t:"Single",l:"CF",r:"Runner on First",a:{P:"Back up position between 3B and home. Read the play to back up 3B or possibly home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Cut-off man. Move into a position to cut off throw from CF to 3B.",B3:"Cover 3B. If SS cannot recover in time, be ready for throw all the way from CF.",LF:"Back up CF.",CF:"Make a good, hard, low throw to 3B. Make the throw low enough for the cut-off man to handle.",RF:"Back up CF."}},
+  {t:"Single",l:"RF",r:"Runner on First",a:{P:"Back up position between 3B and home. Read the play to back up 3B or possibly home plate.",C:"Protect home plate.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Cut-off man. Move into a position to cut off throw from RF to 3B.",B3:"Cover 3B. Be ready for possible throw from RF/SS.",LF:"Move into possible back up position behind 3B.",CF:"Back up RF.",RF:"Make a good, hard, low throw to 3B. Make the throw low enough for the cut-off man to handle."}},
+  {t:"Single",l:"LF",r:"Runner on Second",a:{P:"Back up home plate by going between home and first.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"After seeing the runner touch 1B, cover the bag.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Cover 3B. Be ready for possible throw from cut-off.",B3:"Become primary cut-off man. Move between the mound and 3B.",LF:"Make a good, hard, low throw through the cut-off man.",CF:"Back up LF.",RF:"Move towards the infield for possible back up."}},
+  {t:"Single",l:"CF",r:"Runner on Second",a:{P:"Back up home plate by going between home and first.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Become primary cut-off man positioned between the mound and 2B.",B2:"Cover 1B. Be ready for possible throw from cut-off.",SS:"Cover 2B. Be ready for possible throw from cut-off.",B3:"Cover 3B. Be ready for possible throw from cut-off man.",LF:"Back up CF.",CF:"Make a good, hard, low throw through the cut-off man.",RF:"Back up CF."}},
+  {t:"Single",l:"RF",r:"Runner on Second",a:{P:"Back up home plate by going between home and first.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Become primary cut-off man positioned between mound and 1B.",B2:"Cover 1B. Be ready for possible throw from cut-off.",SS:"Cover 2B. Be ready for possible throw from cut-off.",B3:"Cover 3B. Be ready for possible throw from cut-off man.",LF:"Move into back up position behind 3B.",CF:"Back up RF.",RF:"Make a good, hard, low throw through the cut-off man."}},
+  {t:"Single",l:"LF",r:"Runners on 1st & 2nd",a:{P:"Back up home plate by going between home and first.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"After seeing the runner touch the bag, cover the bag.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Cover 3B. Be ready for possible throw from cut-off.",B3:"Cut-off man. Move into position for throw from LF between mound and third.",LF:"Make a good, hard, low throw through the cut-off man.",CF:"Back up LF.",RF:"Move into possible back up position towards 2B."}},
+  {t:"Single",l:"CF",r:"Runners on 1st & 2nd",a:{P:"Move to back up either 3B or home. Move towards a spot between and then read the throw to dictate where you go.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Cut-off man. Move into a position between the mound and 2B to cut off throw from CF.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Possible cut-off man. Move into position to cut off throw from CF to 3B.",B3:"Cover 3B. Be ready for possible throw.",LF:"Back up CF.",CF:"Make a good, hard, low throw toward either home or 3B.",RF:"Back up CF."}},
+  {t:"Single",l:"RF",r:"Runners on 1st & 2nd",a:{P:"Move to back up either 3B or home. Move towards a spot between and then read the throw to dictate where you go.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Possible cut-off man. Move into a position between the mound and 1B to cut off throw from RF. If throw goes to 3B, cover 1B.",B2:"Cover 2B. Be ready for possible throw from cut-off.",SS:"Possible cut-off man. Move into a position to cut off throw from RF to 3B.",B3:"Cover 3B. Be ready for throw.",LF:"Move into possible back up position behind 3B.",CF:"Back up RF.",RF:"Make a good, hard, low throw toward either home or 3B. Always keep the tying, or winning run, from going to 3B with less than 2 outs."}},
+  {t:"Hit Down Line",l:"LF Line",r:"No Runners",a:{P:"Move into a position to back up 3B.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Watch the runner touch 1B, then trail the runner to 2B. If second baseman vacates 2B, you cover 2B.",B2:"Cover 2B. Read the play, if the ball gets by the LF to the wall, move into a trailer cut-off position.",B3:"Cover 3B, be ready for throw.",SS:"Read the ball and adjust your cut-off position. Move into a line with 2B or 3B for the relay throw. Stay in fair territory if lined up to 3B.",LF:"Make a good, hard, low throw through your cut-off man.",CF:"Back up LF.",RF:"Move into back up position behind 2B."}},
+  {t:"Hit Down Line",l:"LF Line",r:"Runner on First",a:{P:"Move into a position to back up home plate.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Become cut-off man between 3B and home.",B2:"Read the play. Look for the play at 2B. Become trailer to SS if the ball gets by the LF.",B3:"Possible cut-off man to home. Be ready to cover play at 3B too.",SS:"Begin lining up as the cut-off man to 2B. Hold that position until you see it's a sure double and then line up to home.",LF:"Make a good, hard, low throw through your cut-off man.",CF:"Move to back up LF.",RF:"Move into position to back up or possibly cover 2B."}},
+  {t:"Hit Down Line",l:"RF Line",r:"No Runners",a:{P:"Move into a position to back up 3B.",C:"Protect home plate.",B1:"Become trailer to relay man. 20-30 feet back. Be sure to stay out of runners line.",B2:"Read the play to determine your positioning. If the ball is cut off by the RF, then line up to 2B. If the ball goes to the wall, line up for relay to 3B.",SS:"Read the play to see for possible play at 2B. If no play at 2B, wait until the ball gets past RF and become second cut-off man to 3B.",B3:"Cover 3B, be ready for throw.",LF:"Back up 3B.",RF:"Make a good, hard, low throw through your cut-off man."}},
+  {t:"Hit Down Line",l:"RF Line",r:"Runner on First",a:{P:"Move into a position between 3B and home. Read the play to determine where you will back up.",C:"Protect home plate. Give the runner a lane.",B1:"Become a deep secondary trailer. Begin lining up as the cut-off man to 2B. Hold that position until you see it's a sure double and then line up as a relay man to home. Stay in fair territory.",B2:"Read the play. Look for the play at 2B. If it is a sure double and there is a possible play at home, head towards the 1B line for an errant throw.",SS:"Head towards the middle of the diamond and read the play. If the play is at 2B, you must cover. If there is a possible play at home, head toward the 1B line for an errant throw.",B3:"Cover 3B, be ready for throw.",LF:"Back up 3B.",CF:"Back up RF.",RF:"Make a good, hard, low throw through your cut-off man. If throwing to 2B, get it there as quickly as possible to beat runner trying to score."}},
+  {t:"Hit to Gap",l:"Left Center",r:"No Runners",a:{P:"Move into a position to back up 3B.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Watch the runner touch 1B, then trail the runner to 2B. Be ready for throw if the runner rounds too far. Watch for the ball to get past the outfielders and move into a trailer cut-off position behind the SS in line with 3B.",B2:"Cover 2B, then watch for ball to pass outfielders and move into a relay position if ball gets to the wall. Make a good, hard, low throw to 3B.",SS:"Read the ball, line up for a throw to 2B if the ball is cut off. Line up with 3B if the ball gets to the wall. Make a good, hard, low throw to 3B.",B3:"Cover 3B, be ready for throw.",LF:"Move towards the ball. Make a good, hard, low throw through your cut-off man.",CF:"Field the ball and hit cutoff.",RF:"Move into back up position behind 2B."}},
+  {t:"Hit to Gap",l:"Right Center",r:"No Runners",a:{P:"Move into a position to back up 3B.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Watch the runner touch 1B, then trail the runner to 2B. Be ready for throw if the runner rounds too far. Watch for the ball to pass outfielders and move into a trailer cut-off position behind the SS in line with 3B.",B2:"Cover 2B, then watch for ball to pass outfielders. If ball gets to wall, move into a relay position in line with 3B. Make a good, hard, low throw through your cut-off man.",SS:"Cover 2B. Be ready for possible play. If ball gets to wall, move behind 2B baseman as trailer cut-off.",B3:"Cover 3B, be ready for throw.",LF:"Move into back up position behind 3B.",CF:"Field the ball and hit cutoff. Make a good, hard, low throw through your cut-off man.",RF:"Move towards the ball."}},
+  {t:"Hit to Gap",l:"Left Center",r:"Runner on First",a:{P:"Move into a position between 3B and home. Read the play to determine where you will back up.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Become cut-off man between 3B and home if needed.",B2:"Read the play. Look for the play at 2B. Become trailer to SS if the ball gets by the OF.",SS:"Move into relay position inline with 3B. If the ball gets by the OF, then line up to home. Make a good, hard, throw to 3B or to home.",B3:"Cover 3B but be ready to become cut-off to home if needed.",LF:"Move towards the ball. Make a good, hard, low throw to your cut-off man.",CF:"Field the ball and hit cutoff.",RF:"Move into position to possibly cover 2B."}},
+  {t:"Hit to Gap",l:"Right Center",r:"Runner on First",a:{P:"Move into a position between 3B and home. Read the play to determine where you will back up.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"See runner touch base and then act as third cut-off man for play at the plate. If the ball is cut off, cover 1B. If the ball gets to the wall, line up to home.",B2:"Read the play. Look for the play at 2B. If the ball gets past OF, become relay man.",SS:"Move into relay position inline with 3B. If the ball gets by the OF, then line up to home. Make a good, hard, throw to 3B or to home.",B3:"Cover 3B but be ready to become cut-off to home if needed.",LF:"Move into backup position behind 3B.",CF:"Field the ball and hit cutoff. Make a good, hard, low throw through your cut-off man.",RF:"Move towards the ball."}},
+  {t:"Shallow Fly",l:"LF Line",r:"Runner on First",a:{P:"Move towards 3B to cover. Be ready for possible play on runner trying to advance.",C:"Protect home plate.",B1:"Watch runner on first and communicate his actions.",B2:"Cover 2B and be ready for throw.",SS:"Go after the ball and try to catch it.",B3:"Go after the ball and try to catch it.",LF:"Go after the ball and try to catch it.",CF:"Move towards infield for possible back up.",RF:"Move towards infield for possible back up."}},
+  {t:"Shallow Fly",l:"CF",r:"Runner on First",a:{P:"Move towards 2B to cover. Be ready for possible play on runner trying to advance.",C:"Protect home plate.",B1:"Watch runner on first and communicate his actions.",B2:"Go after the ball and try to catch it.",SS:"Cover bag, be ready for possible play.",B3:"Cover bag, be ready for possible play.",LF:"Go after the ball and try to catch it.",CF:"Go after the ball and try to catch it.",RF:"Move towards the infield in-case help is needed."}},
+  {t:"Shallow Fly",l:"RF Line",r:"Runner on First",a:{P:"Move towards 1B to cover. Watch runner on first and communicate his actions. You are here to keep the runner from scoring and to keep the runner on 1B from possibly advancing to 2B on the throw in.",C:"Protect home plate.",B1:"Go after the ball and try to catch it.",B2:"Go after the ball and try to catch it.",SS:"Cover 2B. Be ready for possible play.",B3:"Cover 3B. Be ready for possible play.",LF:"Move towards SS position for possible back up. Be heads up to back up possible throw to 3B.",CF:"Move towards infield in-case help is needed.",RF:"Go after the ball and try to catch it."}},
+  {t:"Fly Out",l:"LF",r:"Runners on 1st & 3rd",a:{P:"Back up home plate by going between home and 1st.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Cover 1B. Be vocal about runner.",B2:"Cover 2B. Be ready for possible throw from cut-off man.",SS:"Move to cover 3B to keep runner close. Be ready for the ball.",B3:"Move into cut-off position lined up to home.",LF:"Get behind the ball, make a good, hard, low throw through the cut-off man lined up towards home.",CF:"Back up LF.",RF:"Move towards back up position behind 2B."}},
+  {t:"Fly Out",l:"CF",r:"Runners on 1st & 3rd",a:{P:"Back up home plate by going between home and 1st.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Move into cut-off position between the mound and 2B.",B2:"Move towards first base to keep the runner close.",SS:"Cover 2B.",B3:"Cover 3B. Keep runner close. Be vocal if runner is going.",LF:"Back up CF.",CF:"Get behind the ball, make a good, hard, low throw through the cut-off man lined up towards home.",RF:"Back up CF."}},
+  {t:"Fly Out",l:"RF",r:"Runners on 1st & 3rd",a:{P:"Back up home plate by going between home and 3rd.",C:"Protect home plate. Be ready for throw. Give the runner a lane.",B1:"Move into cut-off position on the grass between the mound and 1B.",B2:"Move towards first base to keep the runner close.",SS:"Cover 2B.",B3:"Cover 3B. Keep runner close.",LF:"Move towards the infield for the possible back up.",CF:"Back up RF.",RF:"Get behind the ball, make a good, hard, low throw through the cut-off man lined up towards home."}},
+  {t:"Foul Pop-Up",l:"3B Side",r:"Runners on 1st & 3rd",a:{P:"Cover home plate.",C:"After catching the pop-up, be prepared to make a good hard throw to a middle infielder.",B1:"Cover 1B.",B2:"Cover 2B if the ball is on the 3B side.",SS:"Cut-off man if the ball is on the 3B side.",B3:"Cover 3B.",LF:"Back up 3B.",CF:"Back up 2B.",RF:"Back up 1B."}},
+  {t:"Foul Pop-Up",l:"1B Side",r:"Runners on 1st & 3rd",a:{P:"Cover home plate.",C:"After catching the pop-up, be prepared to make a good hard throw to a middle infielder.",B1:"Cover 1B.",B2:"Cut-off man to 2B, if the ball is on the 1B side.",SS:"Cover 2B if ball is on the 1B side.",B3:"Cover 3B.",LF:"Back up 3B.",CF:"Back up 2B.",RF:"Back up 1B."}}
 ];
 
 var PC   = { P:{x:50.1,y:50.9}, C:{x:49.5,y:71.9}, B1:{x:68.9,y:53.1}, B2:{x:55.4,y:43.4}, SS:{x:45.2,y:43.3}, B3:{x:31.2,y:52.8}, LF:{x:21.5,y:32.2}, CF:{x:50.0,y:20.5}, RF:{x:78.1,y:32.2} };
@@ -880,11 +936,50 @@ var ARROWS = {
   "Grounder|2B|Runners on 1st & 2nd": [[55.4, 43.4, 33.1, 53.8, "throw"], [50.1, 50.9, 33.1, 50, "move"], [49.5, 71.9, 49.5, 68.9, "move"], [31.2, 52.8, 33.1, 53.8, "move"], [45.2, 43.3, 50.5, 38.9, "move"], [21.5, 32.2, 28, 45, "move"], [50.0, 20.5, 52, 38, "move"], [78.1, 32.2, 62, 42, "move"]],
   "Grounder|1B|Runners on 1st & 2nd": [[68.9, 53.1, 67.0, 54.1, "throw"], [50.1, 50.9, 67.0, 54.1, "move"], [49.5, 71.9, 49.5, 68.9, "move"], [55.4, 43.4, 68, 50, "move"], [45.2, 43.3, 50.5, 38.9, "move"], [21.5, 32.2, 28, 45, "move"], [50.0, 20.5, 52, 38, "move"], [78.1, 32.2, 70, 45, "move"]],
   "Grounder|P|Runners on 1st & 2nd": [[50.1, 50.9, 33.1, 53.8, "throw"], [49.5, 71.9, 49.5, 68.9, "move"], [68.9, 53.1, 67.0, 54.1, "move"], [55.4, 43.4, 50.1, 48, "move"], [45.2, 43.3, 50.5, 38.9, "move"], [21.5, 32.2, 28, 45, "move"], [50.0, 20.5, 52, 38, "move"], [78.1, 32.2, 70, 45, "move"]],
+  "Grounder|P|Runner on Third": [[50.1,50.9,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[49.5,71.9,49.5,68.9,"move"],[68.9,53.1,67.0,54.1,"move"],[78.1,32.2,70,45,"move"],[50.0,20.5,49.5,58,"move"]],
+  "Grounder|C|Runner on Third": [[49.5,71.9,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[68.9,53.1,67.0,54.1,"move"],[55.4,43.4,68,50,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|1B|Runner on Third": [[68.9,53.1,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,67.0,54.1,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|2B|Runner on Third": [[55.4,43.4,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|SS|Runner on Third": [[45.2,43.3,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[55.4,43.4,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|3B|Runner on Third": [[31.2,52.8,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"],[21.5,32.2,28,45,"move"]],
+  "Fly ball|LF|Runner on Third": [[21.5,32.2,49.5,68.9,"throw"],[55.4,43.4,32,38,"move"],[45.2,43.3,28,42,"move"],[50.0,20.5,21.5,30,"move"],[78.1,32.2,64,28,"move"]],
+  "Fly ball|CF|Runner on Third": [[50.0,20.5,49.5,68.9,"throw"],[55.4,43.4,60,32,"move"],[45.2,43.3,40,32,"move"],[21.5,32.2,35,24,"move"],[78.1,32.2,65,24,"move"]],
+  "Fly ball|RF|Runner on Third": [[78.1,32.2,49.5,68.9,"throw"],[55.4,43.4,65,40,"move"],[45.2,43.3,55,40,"move"],[50.0,20.5,68,26,"move"],[21.5,32.2,35,26,"move"]],
+  "Grounder|P|Bases Loaded": [[50.1,50.9,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[49.5,71.9,49.5,68.9,"move"],[68.9,53.1,67.0,54.1,"move"],[78.1,32.2,70,45,"move"],[50.0,20.5,49.5,58,"move"]],
+  "Grounder|C|Bases Loaded": [[49.5,71.9,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[68.9,53.1,67.0,54.1,"move"],[55.4,43.4,68,50,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|1B|Bases Loaded": [[68.9,53.1,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,67.0,54.1,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|2B|Bases Loaded": [[55.4,43.4,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|SS|Bases Loaded": [[45.2,43.3,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[55.4,43.4,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|3B|Bases Loaded": [[31.2,52.8,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"],[21.5,32.2,28,45,"move"]],
+  "Fly ball|LF|Bases Loaded": [[21.5,32.2,49.5,68.9,"throw"],[55.4,43.4,32,38,"move"],[45.2,43.3,28,42,"move"],[50.0,20.5,21.5,30,"move"],[78.1,32.2,64,28,"move"]],
+  "Fly ball|CF|Bases Loaded": [[50.0,20.5,49.5,68.9,"throw"],[55.4,43.4,60,32,"move"],[45.2,43.3,40,32,"move"],[21.5,32.2,35,24,"move"],[78.1,32.2,65,24,"move"]],
+  "Fly ball|RF|Bases Loaded": [[78.1,32.2,49.5,68.9,"throw"],[55.4,43.4,65,40,"move"],[45.2,43.3,55,40,"move"],[50.0,20.5,68,26,"move"],[21.5,32.2,35,26,"move"]],
+  "Fly ball|LF|Runners on 1st & 2nd": [[21.5,32.2,49.5,68.9,"throw"],[45.2,43.3,32,45,"move"],[50.1,50.9,40,62,"move"],[49.5,71.9,49.5,68.9,"move"],[50.0,20.5,21.5,30,"move"],[78.1,32.2,62,42,"move"]],
+  "Fly ball|CF|Runners on 1st & 2nd": [[50.0,20.5,49.5,68.9,"throw"],[45.2,43.3,42,52,"move"],[50.1,50.9,58,62,"move"],[49.5,71.9,49.5,68.9,"move"],[21.5,32.2,35,25,"move"],[78.1,32.2,65,25,"move"]],
+  "Fly ball|RF|Runners on 1st & 2nd": [[78.1,32.2,49.5,68.9,"throw"],[55.4,43.4,65,38,"move"],[50.1,50.9,40,62,"move"],[49.5,71.9,49.5,68.9,"move"],[50.0,20.5,68,26,"move"],[21.5,32.2,33.1,50,"move"]],
+  "Grounder|P|Runners on 1st & 3rd": [[50.1,50.9,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[49.5,71.9,49.5,68.9,"move"],[68.9,53.1,67.0,54.1,"move"],[78.1,32.2,70,45,"move"],[50.0,20.5,49.5,58,"move"]],
+  "Grounder|1B|Runners on 1st & 3rd": [[68.9,53.1,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,67.0,54.1,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|2B|Runners on 1st & 3rd": [[55.4,43.4,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|SS|Runners on 1st & 3rd": [[45.2,43.3,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[55.4,43.4,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|3B|Runners on 1st & 3rd": [[31.2,52.8,49.5,68.9,"throw"],[49.5,68.9,67.0,54.1,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"],[21.5,32.2,28,45,"move"]],
+  "Fly ball|LF|Runners on 1st & 3rd": [[21.5,32.2,49.5,68.9,"throw"],[55.4,43.4,32,38,"move"],[45.2,43.3,28,42,"move"],[50.0,20.5,21.5,30,"move"],[78.1,32.2,64,28,"move"]],
+  "Fly ball|CF|Runners on 1st & 3rd": [[50.0,20.5,49.5,68.9,"throw"],[55.4,43.4,60,32,"move"],[45.2,43.3,40,32,"move"],[21.5,32.2,35,24,"move"],[78.1,32.2,65,24,"move"]],
+  "Fly ball|RF|Runners on 1st & 3rd": [[78.1,32.2,49.5,68.9,"throw"],[55.4,43.4,65,40,"move"],[45.2,43.3,55,40,"move"],[50.0,20.5,68,26,"move"],[21.5,32.2,35,26,"move"]],
+  "Grounder|P|Runners on 2nd & 3rd": [[50.1,50.9,49.5,68.9,"throw"],[49.5,71.9,49.5,68.9,"move"],[68.9,53.1,67.0,54.1,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|1B|Runners on 2nd & 3rd": [[68.9,53.1,49.5,68.9,"throw"],[50.1,50.9,67.0,54.1,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|2B|Runners on 2nd & 3rd": [[55.4,43.4,49.5,68.9,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|SS|Runners on 2nd & 3rd": [[45.2,43.3,49.5,68.9,"throw"],[50.1,50.9,52,58,"move"],[55.4,43.4,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"]],
+  "Grounder|3B|Runners on 2nd & 3rd": [[31.2,52.8,49.5,68.9,"throw"],[50.1,50.9,52,58,"move"],[45.2,43.3,50.5,38.9,"move"],[50.0,20.5,49.5,58,"move"],[78.1,32.2,70,45,"move"],[21.5,32.2,28,45,"move"]],
+  "Fly ball|LF|Runners on 2nd & 3rd": [[21.5,32.2,49.5,68.9,"throw"],[55.4,43.4,32,38,"move"],[45.2,43.3,28,42,"move"],[50.0,20.5,21.5,30,"move"],[78.1,32.2,64,28,"move"]],
+  "Fly ball|CF|Runners on 2nd & 3rd": [[50.0,20.5,49.5,68.9,"throw"],[55.4,43.4,60,32,"move"],[45.2,43.3,40,32,"move"],[21.5,32.2,35,24,"move"],[78.1,32.2,65,24,"move"]],
+  "Fly ball|RF|Runners on 2nd & 3rd": [[78.1,32.2,49.5,68.9,"throw"],[55.4,43.4,65,40,"move"],[45.2,43.3,55,40,"move"],[50.0,20.5,68,26,"move"],[21.5,32.2,35,26,"move"]]
 };
 
 function makeSVG(play, hlPos, noArrows) {
-  var on1 = play.r.indexOf("First") >= 0 || play.r.indexOf("1st") >= 0;
-  var on2 = play.r.indexOf("Second") >= 0 || play.r.indexOf("2nd") >= 0;
+  var r = play.r;
+  var on1 = r==="Runner on First"||r==="Runners on 1st & 2nd"||r==="Runners on 1st & 3rd"||r==="Bases Loaded";
+  var on2 = r==="Runner on Second"||r==="Runners on 1st & 2nd"||r==="Runners on 2nd & 3rd"||r==="Bases Loaded";
+  var on3 = r==="Runner on Third"||r==="Runners on 1st & 3rd"||r==="Runners on 2nd & 3rd"||r==="Bases Loaded";
   var s = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;width:100%;height:100%;" overflow="visible">'
     + '<defs>'
     + '<marker id="arrowB" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(20,20,20,0.9)"/></marker>'
@@ -892,6 +987,7 @@ function makeSVG(play, hlPos, noArrows) {
     + '</defs>';
   if (on1) { var b=BASES["1B"]; s+='<circle cx="'+b.x+'" cy="'+b.y+'" r="2.8" fill="#e24b4a" stroke="#fff" stroke-width="0.5"/>'; }
   if (on2) { var b=BASES["2B"]; s+='<circle cx="'+b.x+'" cy="'+b.y+'" r="2.8" fill="#e24b4a" stroke="#fff" stroke-width="0.5"/>'; }
+  if (on3) { var b=BASES["3B"]; s+='<circle cx="'+b.x+'" cy="'+b.y+'" r="2.8" fill="#e24b4a" stroke="#fff" stroke-width="0.5"/>'; }
   var bp = BC[play.l];
   if (bp) s+='<circle cx="'+bp.x+'" cy="'+bp.y+'" r="2.2" fill="#f5c518" stroke="#9a7a00" stroke-width="0.5"/>';
   for (var i=0; i<PORD.length; i++) {
@@ -939,7 +1035,7 @@ function buildDetail(play, hlPos) {
 // ── BROWSE ──
 function getPlay(sit, type) {
   for (var i=0; i<PLAYS.length; i++) {
-    if (PLAYS[i].r===sit && PLAYS[i].t===type) return PLAYS[i];
+    if (PLAYS[i] && PLAYS[i].r===sit && PLAYS[i].t===type) return PLAYS[i];
   }
   return null;
 }
@@ -947,14 +1043,14 @@ function getPlay(sit, type) {
 function buildBrowseGrid() {
   var grid = document.getElementById('browse-grid');
   var sits = ["No Runners","Runner on First","Runner on Second","Runners on 1st & 2nd"];
-  var sitLabels = {"No Runners":"No runners","Runner on First":"Runner on 1st","Runner on Second":"Runner on 2nd","Runners on 1st & 2nd":"Runners on 1st & 2nd"};
+  var sitLabels = {"No Runners":"No runners","Runner on First":"Runner on 1st","Runner on Second":"Runner on 2nd","Runners on 1st & 2nd":"1st & 2nd"};
   var html = '<div class="play-grid">';
   for (var s=0; s<sits.length; s++) {
     var sit = sits[s];
     html += '<div class="play-grid-sit">' + sitLabels[sit] + '</div>';
     // Get all plays for this sit, pair them into rows of 2
     var sitPlays = [];
-    for (var i=0; i<PLAYS.length; i++) { if (PLAYS[i].r===sit) sitPlays.push(i); }
+    for (var i=0; i<PLAYS.length; i++) { if (PLAYS[i] && PLAYS[i].r===sit) sitPlays.push(i); }
     for (var i=0; i<sitPlays.length; i+=2) {
       html += '<table class="play-grid-row"><tr>';
       for (var j=i; j<Math.min(i+2,sitPlays.length); j++) {
@@ -1005,7 +1101,7 @@ function showBrowsePlay(idx) {
 function buildByposLocPicker(sit, type) {
   var locs = [];
   for (var i=0; i<PLAYS.length; i++) {
-    if (PLAYS[i].r===sit && PLAYS[i].t===type) locs.push(PLAYS[i].l);
+    if (PLAYS[i] && PLAYS[i].r===sit && PLAYS[i].t===type) locs.push(PLAYS[i].l);
   }
   var picker = document.getElementById('bypos-loc-picker');
   picker.innerHTML = '<div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#e8b84b;margin-bottom:6px;font-family:Oswald,Arial,sans-serif;">Step 4 &mdash; Ball location</div>';
@@ -1032,7 +1128,7 @@ function buildByposLocPicker(sit, type) {
 function showByposDetail(loc) {
   if (!bpPos || !bpSit || !bpType || !loc) return;
   for (var i=0; i<PLAYS.length; i++) {
-    if (PLAYS[i].r===bpSit && PLAYS[i].t===bpType && PLAYS[i].l===loc) {
+    if (PLAYS[i] && PLAYS[i].r===bpSit && PLAYS[i].t===bpType && PLAYS[i].l===loc) {
       document.getElementById('bypos-detail').innerHTML = buildDetail(PLAYS[i], bpPos);
       document.getElementById('content-area').scrollTop = 0;
       return;
@@ -1291,6 +1387,9 @@ for (var i=0; i<chips.length; i++) {
       document.getElementById('bypos-type-bar').className='type-bar';
       var bsbtns = document.getElementsByClassName('bypos-sit');
       for (var j=0; j<bsbtns.length; j++) bsbtns[j].className='big-btn bypos-sit';
+      // Reset all type buttons to visible
+      var typeBtns = document.getElementsByClassName('bypos-type');
+      for (var j=0; j<typeBtns.length; j++) { typeBtns[j].style.display=''; typeBtns[j].className='type-btn bypos-type'; }
       document.getElementById('bypos-loc-picker').className='play-picker';
       document.getElementById('bypos-loc-picker').innerHTML='';
       document.getElementById('bypos-detail').innerHTML='<div class="detail-empty"><div class="detail-empty-icon">&#9918;</div><div class="detail-empty-text">Now pick the situation</div></div>';
@@ -1308,9 +1407,19 @@ for (var i=0; i<bpSitBtns.length; i++) {
       var all = document.getElementsByClassName('bypos-sit');
       for (var j=0; j<all.length; j++) all[j].className='big-btn bypos-sit';
       btn.className='big-btn bypos-sit active';
+      // Build set of play types that exist for this situation
+      var availTypes = {};
+      for (var k=0; k<PLAYS.length; k++) {
+        if (PLAYS[k] && PLAYS[k].r === bpSit) availTypes[PLAYS[k].t] = true;
+      }
+      // Show only type buttons that have plays for this situation
+      var typeBtns = document.getElementsByClassName('bypos-type');
+      for (var j=0; j<typeBtns.length; j++) {
+        var t = typeBtns[j].getAttribute('data-type');
+        typeBtns[j].className = 'type-btn bypos-type';
+        typeBtns[j].style.display = availTypes[t] ? '' : 'none';
+      }
       document.getElementById('bypos-type-bar').className='type-bar visible';
-      var btns = document.getElementsByClassName('bypos-type');
-      for (var j=0; j<btns.length; j++) btns[j].className='type-btn bypos-type';
       bpType = null;
       document.getElementById('bypos-loc-picker').className='play-picker';
       document.getElementById('bypos-loc-picker').innerHTML='';
