@@ -118,7 +118,7 @@ body {
   background: none;
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  width: 33.33%;
+  width: 28.33%;
   position: relative;
 }
 .tab-btn.active {
@@ -664,9 +664,179 @@ body {
 
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-thumb { background: rgba(240,180,41,0.2); border-radius: 2px; }
+
+/* ═══════════════════════════════════════
+   GAMIFICATION
+═══════════════════════════════════════ */
+@keyframes shakeWrong {
+  0%,100%{transform:translateX(0)} 10%,50%,90%{transform:translateX(-6px)} 30%,70%{transform:translateX(6px)}
+}
+@keyframes popIn {
+  0%{transform:scale(0.3);opacity:0} 50%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1}
+}
+@keyframes slideUp {
+  0%{transform:translateY(30px);opacity:0} 100%{transform:translateY(0);opacity:1}
+}
+@keyframes pulseGlow {
+  0%,100%{box-shadow:0 0 8px rgba(240,180,41,0.3)} 50%{box-shadow:0 0 24px rgba(240,180,41,0.7)}
+}
+@keyframes comboFloat {
+  0%{transform:translateY(0) scale(1);opacity:1}
+  80%{transform:translateY(-60px) scale(1.3);opacity:0.8}
+  100%{transform:translateY(-80px) scale(1);opacity:0}
+}
+@keyframes levelUpBg {
+  0%{background:radial-gradient(circle,rgba(240,180,41,0.4) 0%,transparent 70%)}
+  50%{background:radial-gradient(circle,rgba(240,180,41,0.8) 0%,transparent 70%)}
+  100%{background:radial-gradient(circle,rgba(240,180,41,0.4) 0%,transparent 70%)}
+}
+@keyframes xpEarned {
+  0%{transform:scale(0.5);opacity:0} 40%{transform:scale(1.3);opacity:1} 100%{transform:scale(1);opacity:1}
+}
+@keyframes timerPulse {
+  0%,100%{transform:scale(1)} 50%{transform:scale(1.08)}
+}
+.shake-wrong { animation: shakeWrong 0.5s ease-in-out; }
+.pop-in { animation: popIn 0.4s ease-out; }
+.slide-up { animation: slideUp 0.3s ease-out; }
+
+/* XP Bar */
+.xp-bar-wrap {
+  background: var(--ink3); border-radius: 20px; height: 14px; margin: 6px 14px 2px;
+  border: 1px solid rgba(240,180,41,0.2); overflow: hidden; position: relative;
+}
+.xp-bar-fill {
+  height: 100%; background: linear-gradient(90deg, #c8900a, #f0b429, #ffe066);
+  border-radius: 20px; transition: width 0.6s ease; min-width: 0;
+}
+.xp-bar-text {
+  position: absolute; top: 0; left: 0; right: 0; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 9px;
+  font-weight: 700; color: var(--ink); letter-spacing: 0.06em;
+}
+.level-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 13px;
+  letter-spacing: 0.1em; color: var(--gold); background: var(--gold-glow);
+  border: 1px solid rgba(240,180,41,0.3);
+}
+
+/* Timer */
+.quiz-timer-wrap {
+  text-align: center; padding: 8px 0 4px; position: relative;
+}
+.quiz-timer-bar-outer {
+  height: 8px; background: var(--ink3); border-radius: 8px; margin: 0 16px;
+  overflow: hidden; border: 1px solid rgba(255,255,255,0.06);
+}
+.quiz-timer-bar-inner {
+  height: 100%; background: linear-gradient(90deg, #2ea043, #5cc96e);
+  border-radius: 8px; transition: width 0.25s linear;
+}
+.quiz-timer-bar-inner.warning { background: linear-gradient(90deg, #e84040, #ff6b6b); }
+.quiz-timer-text {
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 22px;
+  color: var(--green); letter-spacing: 0.05em; margin-bottom: 2px;
+}
+.quiz-timer-text.warning { color: var(--red); animation: timerPulse 0.5s infinite; }
+
+/* Combo popup */
+.combo-popup {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 200; pointer-events: none;
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 36px;
+  color: var(--gold); text-shadow: 0 0 20px rgba(240,180,41,0.8), 0 2px 8px rgba(0,0,0,0.5);
+  animation: comboFloat 1.2s ease-out forwards;
+  letter-spacing: 0.08em;
+}
+
+/* XP earned indicator */
+.xp-earned-indicator {
+  position: absolute; bottom: -4px; right: 8px;
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 16px;
+  color: var(--gold); animation: xpEarned 0.5s ease-out;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Level up overlay */
+.levelup-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 300;
+  background: rgba(5,12,20,0.92); display: flex; align-items: center;
+  justify-content: center; flex-direction: column;
+}
+.levelup-content {
+  text-align: center; animation: popIn 0.6s ease-out;
+}
+.levelup-icon { font-size: 64px; margin-bottom: 12px; }
+.levelup-title {
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 32px;
+  color: var(--gold); letter-spacing: 0.12em; margin-bottom: 4px;
+}
+.levelup-rank {
+  font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 20px;
+  color: var(--white); letter-spacing: 0.06em; margin-bottom: 16px;
+}
+.levelup-btn {
+  display: inline-block; padding: 12px 32px; background: var(--gold);
+  color: var(--ink); border: none; border-radius: var(--r);
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 18px;
+  letter-spacing: 0.12em; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(240,180,41,0.4);
+}
+
+/* Badge display */
+.badges-grid {
+  display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px;
+  justify-content: center;
+}
+.badge-item {
+  width: 60px; text-align: center; opacity: 0.3;
+}
+.badge-item.earned { opacity: 1; }
+.badge-item .badge-icon { font-size: 28px; }
+.badge-item .badge-name {
+  font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 9px;
+  color: var(--ice3); letter-spacing: 0.04em; margin-top: 2px;
+}
+.badge-item.earned .badge-name { color: var(--gold); }
+
+/* Coaching tip card */
+.coaching-tip {
+  background: linear-gradient(135deg, rgba(240,180,41,0.08) 0%, rgba(240,180,41,0.02) 100%);
+  border: 1px solid rgba(240,180,41,0.2); border-radius: var(--r);
+  padding: 12px 14px; margin: 10px 0;
+  animation: slideUp 0.4s ease-out;
+}
+.coaching-tip-label {
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 12px;
+  color: var(--gold); letter-spacing: 0.12em; margin-bottom: 6px;
+}
+.coaching-tip-text {
+  font-family: 'Barlow', Arial, sans-serif; font-size: 13px;
+  color: var(--ice); line-height: 1.5;
+}
+
+/* Profile tab */
+.profile-section { padding: 16px; }
+.profile-header {
+  text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 16px;
+}
+.profile-level-icon { font-size: 48px; margin-bottom: 8px; }
+.profile-rank {
+  font-family: 'Bebas Neue', Arial, sans-serif; font-size: 24px;
+  color: var(--gold); letter-spacing: 0.1em;
+}
+.profile-xp-text {
+  font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 12px;
+  color: var(--ice3); margin-top: 4px;
+}
+
 </style>
 </head>
 <body>
+
 <div id="chrome">
   <div class="header">
     <div class="header-left">
@@ -750,9 +920,9 @@ body {
     </div>
   </div>
 
+
   <!-- QUIZ -->
   <div id="quiz-section" class="section">
-    <!-- Position picker screen -->
     <div id="quiz-pos-screen">
       <div class="step-bar">
         <div class="step-label">Pick your position to be quizzed</div>
@@ -774,14 +944,20 @@ body {
         </tr></table>
       </div>
     </div>
-    <!-- Quiz screen -->
     <div id="quiz-game-screen" style="display:none;">
-      <div style="background:#162436;border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 14px;display:table;width:100%;">
+      <div style="background:#162436;border-bottom:1px solid rgba(255,255,255,0.08);padding:8px 14px;display:table;width:100%;">
         <div style="display:table-cell;vertical-align:middle;">
-          <span id="quiz-pos-label" style="font-family:Oswald,Arial,sans-serif;font-size:12px;color:#e8b84b;letter-spacing:0.06em;text-transform:uppercase;"></span>
+          <span class="level-badge" id="quiz-level-badge"></span>
+          <span id="quiz-pos-label" style="font-family:'Bebas Neue',Arial,sans-serif;font-size:14px;color:var(--gold);letter-spacing:0.1em;margin-left:8px;"></span>
         </div>
         <div style="display:table-cell;vertical-align:middle;text-align:right;">
-          <button id="quiz-change-pos" style="font-family:Oswald,Arial,sans-serif;font-size:11px;color:#8a9baa;background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;cursor:pointer;">Change</button>
+          <button id="quiz-change-pos" style="font-family:'Barlow Condensed',Arial,sans-serif;font-size:11px;font-weight:600;color:var(--ice3);background:none;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 13px;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;">Change</button>
+        </div>
+      </div>
+      <div id="quiz-xp-section" style="padding:4px 0 6px;background:var(--ink2);border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="xp-bar-wrap">
+          <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div>
+          <div class="xp-bar-text" id="xp-bar-text">0 / 100 XP</div>
         </div>
       </div>
       <div class="quiz-stats">
@@ -793,6 +969,23 @@ body {
         </tr></table>
       </div>
       <div class="quiz-inner" id="quiz-area"></div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="profile-section" class="section">
+    <div class="profile-section">
+      <div class="profile-header">
+        <div class="profile-level-icon" id="profile-icon"></div>
+        <div class="profile-rank" id="profile-rank"></div>
+        <div class="profile-xp-text" id="profile-xp"></div>
+        <div class="xp-bar-wrap" style="margin-top:10px;">
+          <div class="xp-bar-fill" id="profile-xp-bar" style="width:0%"></div>
+          <div class="xp-bar-text" id="profile-xp-bar-text"></div>
+        </div>
+      </div>
+      <div class="step-label" style="padding:0 0 8px;">Badges</div>
+      <div class="badges-grid" id="profile-badges"></div>
     </div>
   </div>
 
@@ -947,6 +1140,22 @@ var ARROWS = {
   "Bunt|3B Side|No Runners": [[31.2,52.8,67.0,54.1,"throw"],[50.1,50.9,50.5,38.9,"move"],[49.5,71.9,50.5,38.9,"move"],[68.9,53.1,67.0,54.1,"move"],[55.4,43.4,50.5,38.9,"move"],[45.2,43.3,33.1,53.8,"move"],[21.5,32.2,28,45,"move"],[50.0,20.5,50.5,35,"move"],[78.1,32.2,70,45,"move"]],
   "Bunt|1B Side|No Runners": [[68.9,53.1,67.0,54.1,"throw"],[50.1,50.9,50.5,38.9,"move"],[49.5,71.9,50.5,38.9,"move"],[55.4,43.4,67.0,54.1,"move"],[45.2,43.3,50.5,38.9,"move"],[31.2,52.8,33.1,53.8,"move"],[21.5,32.2,28,45,"move"],[50.0,20.5,50.5,35,"move"],[78.1,32.2,70,45,"move"]]
 };
+
+// Browse state (kept for bypos compatibility)
+var bSit  = "No Runners";
+var bType = "Fly ball";
+
+// Bypos state
+var bpPos  = null;
+var bpSit  = null;
+var bpType = null;
+
+function fixLayout() {
+  var ch = document.getElementById('chrome');
+  document.getElementById('content-area').style.top = ch.offsetHeight + 'px';
+}
+window.onload = function(){ fixLayout(); addProfileTab(); updateXPDisplay(); updateBadgesDisplay(); };
+window.onresize = fixLayout;
 
 function makeSVG(play, hlPos, noArrows) {
   var r = play.r;
@@ -1109,20 +1318,274 @@ function showByposDetail(loc) {
   }
 }
 
-// ── QUIZ ──
+
+// ═══════════════════════════════════════
+// GAMIFICATION SYSTEM
+// ═══════════════════════════════════════
+var LEVELS = [
+  {name:'Rookie', xp:0, icon:'⚾'},
+  {name:'Little Leaguer', xp:100, icon:'🥉'},
+  {name:'Varsity', xp:300, icon:'🥈'},
+  {name:'All-Star', xp:600, icon:'🥇'},
+  {name:'Pro', xp:1000, icon:'🏆'},
+  {name:'MVP', xp:1500, icon:'⭐'},
+  {name:'Legend', xp:2500, icon:'👑'}
+];
+
+var BADGES = [
+  {id:'onfire',name:'On Fire',icon:'🔥',desc:'5 correct in a row',check:function(s){return s.maxStreak>=5;}},
+  {id:'perfect',name:'Perfect Game',icon:'💎',desc:'10 correct, 0 wrong in a session',check:function(s){return s.correct>=10&&s.wrong===0;}},
+  {id:'speeddemon',name:'Speed Demon',icon:'⚡',desc:'Answer 5 questions in under 5 seconds each',check:function(s){return s.fastAnswers>=5;}},
+  {id:'century',name:'Century',icon:'💯',desc:'Answer 100 total questions',check:function(s){return s.totalAllTime>=100;}},
+  {id:'ironglove',name:'Iron Glove',icon:'🧤',desc:'80%+ accuracy over 20+ questions',check:function(s){return s.total>=20&&(s.correct/s.total)>=0.8;}},
+  {id:'student',name:'Student of the Game',icon:'📚',desc:'Quiz all 9 positions',check:function(s){return Object.keys(s.positionsPlayed).length>=9;}},
+  {id:'clutch',name:'Clutch Player',icon:'🎯',desc:'10 streak',check:function(s){return s.maxStreak>=10;}},
+  {id:'marathon',name:'Marathon',icon:'🏃',desc:'Answer 50 questions in one session',check:function(s){return s.total>=50;}},
+  {id:'scholar',name:'Baseball Scholar',icon:'🎓',desc:'Earn 1000 XP total',check:function(s){return s.xpTotal>=1000;}}
+];
+
+var COACHING_TIPS = {
+  'Fly ball': [
+    "On a fly ball, outfielders should call the ball loudly — 'I got it!' — to avoid collisions.",
+    "The cut-off man should line up between the fielder and the target base.",
+    "Infielders not involved in the play should cover a base or back up the throw.",
+    "On a deep fly, the outfielder's first step should be back, then adjust.",
+    "Communication is key — point to who should take the ball if two fielders converge."
+  ],
+  'Grounder': [
+    "On a grounder, charge the ball — don't wait for it to come to you.",
+    "Field the ball out front with soft hands, then make a strong throw.",
+    "The pitcher should always move toward a base or backup position on any ground ball.",
+    "On a grounder with runners on, know the lead runner's position before the ball is hit.",
+    "Stay low through the ball — don't stand up too early on a grounder."
+  ],
+  'Double': [
+    "On an extra-base hit, the relay system is critical — line up two cut-off men.",
+    "Trail the lead cut-off by about 30 feet to give an option for a redirect.",
+    "The catcher should be directing traffic — calling which base to throw to.",
+    "Outfielders: hit your cut-off man in the chest — don't overthrow trying for the runner.",
+    "Corner infielders cover their bases while middle infielders handle the relay."
+  ],
+  'Bunt': [
+    "On a bunt, the third baseman and first baseman crash hard — the pitcher covers middle.",
+    "The catcher handles anything right in front of the plate.",
+    "Call out which base to throw to before you pick up the ball.",
+    "Know the situation: sacrifice bunt? Try to get the lead runner. Bunt for a hit? Get the out at first.",
+    "Second baseman or shortstop should cover first base if the first baseman charges."
+  ]
+};
+
+// Load saved game state
+function loadGameState() {
+  try {
+    var saved = localStorage.getItem('dp_game_state');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return {xp:0, level:0, badges:[], totalAllTime:0, maxStreakAllTime:0, positionsPlayed:{}, fastAnswersAllTime:0};
+}
+function saveGameState() {
+  try {
+    localStorage.setItem('dp_game_state', JSON.stringify(gameState));
+  } catch(e) {}
+}
+
+var gameState = loadGameState();
+
+// Session state
+var sessionStats = {correct:0, wrong:0, total:0, maxStreak:0, fastAnswers:0, positionsPlayed:{}};
+
+var TIMER_SECONDS = 15;
+var timerInterval = null;
+var timerRemaining = TIMER_SECONDS;
+var questionStartTime = 0;
+
+function getLevel(xp) {
+  for (var i=LEVELS.length-1; i>=0; i--) {
+    if (xp >= LEVELS[i].xp) return i;
+  }
+  return 0;
+}
+
+function getXpForNext(xp) {
+  var lvl = getLevel(xp);
+  if (lvl >= LEVELS.length-1) return {current:xp-LEVELS[lvl].xp, needed:0, pct:100};
+  var base = LEVELS[lvl].xp;
+  var next = LEVELS[lvl+1].xp;
+  var current = xp - base;
+  var needed = next - base;
+  return {current:current, needed:needed, pct:Math.min(100, Math.round(current/needed*100))};
+}
+
+function calcXP(isCorrect, timeLeft, streak) {
+  if (!isCorrect) return 0;
+  var base = 10;
+  var speedBonus = timeLeft > 10 ? 5 : (timeLeft > 5 ? 3 : 0);
+  var streakBonus = streak >= 5 ? 5 : (streak >= 3 ? 3 : 0);
+  return base + speedBonus + streakBonus;
+}
+
+function updateXPDisplay() {
+  var info = getXpForNext(gameState.xp);
+  var lvl = getLevel(gameState.xp);
+  var el = document.getElementById('xp-bar-fill');
+  if (el) el.style.width = info.pct + '%';
+  var txt = document.getElementById('xp-bar-text');
+  if (txt) txt.textContent = info.current + ' / ' + (info.needed||'MAX') + ' XP';
+  var badge = document.getElementById('quiz-level-badge');
+  if (badge) badge.textContent = LEVELS[lvl].icon + ' ' + LEVELS[lvl].name;
+  // Profile
+  var pi = document.getElementById('profile-icon');
+  if (pi) pi.textContent = LEVELS[lvl].icon;
+  var pr = document.getElementById('profile-rank');
+  if (pr) pr.textContent = LEVELS[lvl].name;
+  var px = document.getElementById('profile-xp');
+  if (px) px.textContent = gameState.xp + ' XP Total';
+  var pb = document.getElementById('profile-xp-bar');
+  if (pb) pb.style.width = info.pct + '%';
+  var pbt = document.getElementById('profile-xp-bar-text');
+  if (pbt) pbt.textContent = info.current + ' / ' + (info.needed||'MAX') + ' XP';
+}
+
+function updateBadgesDisplay() {
+  var el = document.getElementById('profile-badges');
+  if (!el) return;
+  var html = '';
+  for (var i=0; i<BADGES.length; i++) {
+    var b = BADGES[i];
+    var earned = gameState.badges.indexOf(b.id) >= 0;
+    html += '<div class="badge-item'+(earned?' earned':'')+'">';
+    html += '<div class="badge-icon">'+(earned?b.icon:'🔒')+'</div>';
+    html += '<div class="badge-name">'+b.name+'</div>';
+    html += '</div>';
+  }
+  el.innerHTML = html;
+}
+
+function checkBadges() {
+  var checkState = {
+    correct: sessionStats.correct,
+    wrong: sessionStats.wrong,
+    total: sessionStats.total,
+    maxStreak: Math.max(sessionStats.maxStreak, qs),
+    fastAnswers: sessionStats.fastAnswers,
+    positionsPlayed: Object.assign({}, gameState.positionsPlayed, sessionStats.positionsPlayed),
+    totalAllTime: gameState.totalAllTime + sessionStats.total,
+    xpTotal: gameState.xp
+  };
+  var newBadges = [];
+  for (var i=0; i<BADGES.length; i++) {
+    if (gameState.badges.indexOf(BADGES[i].id) < 0 && BADGES[i].check(checkState)) {
+      gameState.badges.push(BADGES[i].id);
+      newBadges.push(BADGES[i]);
+    }
+  }
+  return newBadges;
+}
+
+function showCombo(streak) {
+  var msgs = {3:'3 IN A ROW!', 5:'ON FIRE! x5 🔥', 7:'UNSTOPPABLE! x7', 10:'LEGENDARY! x10 👑'};
+  var msg = msgs[streak];
+  if (!msg && streak > 10 && streak % 5 === 0) msg = 'x'+streak+' STREAK! 👑';
+  if (!msg) return;
+  var div = document.createElement('div');
+  div.className = 'combo-popup';
+  div.textContent = msg;
+  document.body.appendChild(div);
+  setTimeout(function(){ if(div.parentNode) div.parentNode.removeChild(div); }, 1300);
+}
+
+function showLevelUp(newLevel) {
+  var overlay = document.createElement('div');
+  overlay.className = 'levelup-overlay';
+  overlay.innerHTML = '<div class="levelup-content">'
+    +'<div class="levelup-icon">'+LEVELS[newLevel].icon+'</div>'
+    +'<div class="levelup-title">LEVEL UP!</div>'
+    +'<div class="levelup-rank">'+LEVELS[newLevel].name+'</div>'
+    +'<button class="levelup-btn" id="levelup-dismiss">LET\'S GO!</button>'
+    +'</div>';
+  document.body.appendChild(overlay);
+  document.getElementById('levelup-dismiss').addEventListener('click', function(){
+    if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+  });
+}
+
+function getCoachingTip(playType, pos) {
+  var tips = COACHING_TIPS[playType] || COACHING_TIPS['Grounder'];
+  return tips[Math.floor(Math.random() * tips.length)];
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerRemaining = TIMER_SECONDS;
+  updateTimerDisplay();
+  timerInterval = setInterval(function(){
+    timerRemaining--;
+    updateTimerDisplay();
+    if (timerRemaining <= 0) {
+      clearInterval(timerInterval);
+      handleTimeout();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  var txt = document.getElementById('timer-text');
+  var bar = document.getElementById('timer-bar');
+  if (!txt || !bar) return;
+  txt.textContent = timerRemaining + 's';
+  var pct = (timerRemaining / TIMER_SECONDS) * 100;
+  bar.style.width = pct + '%';
+  if (timerRemaining <= 5) {
+    txt.className = 'quiz-timer-text warning';
+    bar.className = 'quiz-timer-bar-inner warning';
+  } else {
+    txt.className = 'quiz-timer-text';
+    bar.className = 'quiz-timer-bar-inner';
+  }
+}
+
+function handleTimeout() {
+  qt++; sessionStats.total++; sessionStats.wrong++; qs=0;
+  updStats();
+  // Show correct answer
+  for(var j=0;j<qCur.opts.length;j++){
+    var b=document.getElementById('qo'+j); if(b) b.disabled=true;
+    if(qCur.opts[j]===qCur.correct && b) b.className='quiz-opt correct';
+  }
+  var fb=document.getElementById('qfb');
+  if(fb){fb.className='quiz-fb bad';fb.textContent="⏰ Time's up! Answer: "+qCur.correct;fb.style.display='block';}
+  // Show coaching tip
+  showTipCard(qCur.play.t, qCur.pos);
+  document.getElementById('qnx').style.display='block';
+  gameState.totalAllTime++;
+  checkBadges(); updateBadgesDisplay(); saveGameState();
+}
+
+function showTipCard(playType, pos) {
+  var tipArea = document.getElementById('tip-area');
+  if (!tipArea) return;
+  var tip = getCoachingTip(playType, pos);
+  tipArea.innerHTML = '<div class="coaching-tip"><div class="coaching-tip-label">💡 Coaching Tip</div>'
+    +'<div class="coaching-tip-text">'+tip+'</div></div>';
+}
+
+// ── QUIZ (GAMIFIED) ──
 var qc=0, qt=0, qs=0, qCur=null, qPos=null;
 
 function updStats() {
-  document.getElementById("qc").textContent=qc;
-  document.getElementById("qt").textContent=qt;
-  document.getElementById("qs").textContent=qs;
-  document.getElementById("qp").innerHTML=qt?Math.round(qc/qt*100)+"%":"&#8212;";
+  document.getElementById('qc').textContent=qc;
+  document.getElementById('qt').textContent=qt;
+  document.getElementById('qs').textContent=qs;
+  document.getElementById('qp').innerHTML=qt?Math.round(qc/qt*100)+'%':'&#8212;';
 }
 
 function startQuiz(pos) {
   qPos = pos;
   qc=0; qt=0; qs=0;
+  sessionStats = {correct:0, wrong:0, total:0, maxStreak:0, fastAnswers:0, positionsPlayed:{}};
   updStats();
+  updateXPDisplay();
+  updateBadgesDisplay();
   var label = pos ? (PLBL[pos]+' — '+({P:'Pitcher',C:'Catcher',B1:'1st Base',B2:'2nd Base',SS:'Shortstop',B3:'3rd Base',LF:'Left Field',CF:'Center Field',RF:'Right Field'}[pos]||pos)) : 'All Positions';
   document.getElementById('quiz-pos-label').textContent = label;
   document.getElementById('quiz-pos-screen').style.display='none';
@@ -1131,18 +1594,16 @@ function startQuiz(pos) {
 }
 
 function nextQuiz() {
+  clearInterval(timerInterval);
   var play=PLAYS[Math.floor(Math.random()*PLAYS.length)];
-  // If position locked, always quiz that position
   var pos = qPos ? qPos : PORD[Math.floor(Math.random()*PORD.length)];
   var correct=play.a[pos];
-  // Pull wrong answers from OTHER positions on the same play — totally different actions
   var seen={}, pool=[];
   for (var j=0; j<PORD.length; j++) {
     if (PORD[j]===pos) continue;
     var v=play.a[PORD[j]];
     if (v && v!==correct && !seen[v]) { seen[v]=true; pool.push(v); }
   }
-  // If we need more, pull from other plays for other positions
   if (pool.length < 3) {
     for (var i=0; i<PLAYS.length; i++) {
       for (var j=0; j<PORD.length; j++) {
@@ -1154,21 +1615,30 @@ function nextQuiz() {
   }
   pool.sort(function(){return Math.random()-0.5;});
   var wrongs=pool.slice(0,3);
-  while(wrongs.length<3) wrongs.push("Stay in starting position.");
+  while(wrongs.length<3) wrongs.push('Stay in starting position.');
   var opts=[correct].concat(wrongs).sort(function(){return Math.random()-0.5;});
   qCur={play:play,pos:pos,correct:correct,opts:opts};
-  var area=document.getElementById("quiz-area");
+  questionStartTime = Date.now();
+  
+  // Track position played
+  sessionStats.positionsPlayed[pos] = true;
+  gameState.positionsPlayed[pos] = true;
+
+  var area=document.getElementById('quiz-area');
   area.innerHTML=
     '<div class="quiz-card">'
+    +'<div class="quiz-timer-wrap"><div class="quiz-timer-text" id="timer-text">'+TIMER_SECONDS+'s</div>'
+    +'<div class="quiz-timer-bar-outer"><div class="quiz-timer-bar-inner" id="timer-bar" style="width:100%"></div></div></div>'
     +'<div class="quiz-field-wrap"><img src="'+FIMG+'" alt="field"><div class="quiz-svg">'+makeSVG(play,qPos||null,true)+'</div></div>'
     +'<div class="quiz-q-block"><div class="quiz-scenario">'+play.t+' to '+play.l+' &mdash; '+runnerText(play.r)+'</div>'
     +'<div class="quiz-q">What does the <b>'+PLBL[pos]+'</b> do?</div></div>'
-    +'<div class="quiz-opts"></div>'
+    +'<div class="quiz-opts" id="quiz-opts-container"></div>'
     +'<div class="quiz-fb" id="qfb"></div>'
-    +'<div class="quiz-next" id="qnx"><button class="btn-gold" id="next-quiz-btn">Next Question</button></div>'
+    +'<div id="tip-area"></div>'
+    +'<div class="quiz-next" id="qnx"><button class="btn-gold" id="next-quiz-btn">Next Question ▶</button></div>'
     +'</div>';
-  // Attach answer buttons directly
-  var optsDiv = area.getElementsByClassName('quiz-opts')[0];
+  
+  var optsDiv = document.getElementById('quiz-opts-container');
   for (var i=0; i<opts.length; i++) {
     var btn = document.createElement('button');
     btn.className='quiz-opt';
@@ -1179,27 +1649,109 @@ function nextQuiz() {
     })(i);
     optsDiv.appendChild(btn);
   }
-  // Next button
   document.getElementById('next-quiz-btn').addEventListener('click', function(e){
     e.stopPropagation(); nextQuiz();
   });
+  
+  startTimer();
 }
 
 function answerQ(i) {
+  clearInterval(timerInterval);
   var right=(qCur.opts[i]===qCur.correct);
-  qt++; if(right){qc++;qs++;}else{qs=0;}
-  updStats();
-  for(var j=0;j<qCur.opts.length;j++){
-    var b=document.getElementById("qo"+j); b.disabled=true;
-    if(qCur.opts[j]===qCur.correct) b.className="quiz-opt correct";
-    else if(j===i&&!right) b.className="quiz-opt wrong";
+  var elapsed = (Date.now() - questionStartTime) / 1000;
+  qt++; sessionStats.total++;
+  if(right){
+    qc++; qs++; sessionStats.correct++;
+    if (qs > sessionStats.maxStreak) sessionStats.maxStreak = qs;
+    if (elapsed < 5) sessionStats.fastAnswers++;
+    // XP
+    var oldLevel = getLevel(gameState.xp);
+    var xpEarned = calcXP(true, timerRemaining, qs);
+    gameState.xp += xpEarned;
+    var newLevel = getLevel(gameState.xp);
+    // Combo
+    showCombo(qs);
+    // Show XP on correct button
+    var correctBtn = null;
+    for(var j=0;j<qCur.opts.length;j++){
+      if(qCur.opts[j]===qCur.correct) { correctBtn = document.getElementById('qo'+j); break; }
+    }
+    if (correctBtn) {
+      correctBtn.style.position='relative';
+      var xpEl = document.createElement('span');
+      xpEl.className='xp-earned-indicator';
+      xpEl.textContent='+'+xpEarned+' XP';
+      correctBtn.appendChild(xpEl);
+    }
+    // Level up?
+    if (newLevel > oldLevel) {
+      setTimeout(function(){ showLevelUp(newLevel); }, 600);
+    }
+  } else {
+    qs=0; sessionStats.wrong++;
   }
-  var fb=document.getElementById("qfb");
-  fb.className="quiz-fb "+(right?"good":"bad");
-  fb.textContent=right?"Correct!":"Incorrect. Answer: "+qCur.correct;
-  fb.style.display="block";
-  document.getElementById("qnx").style.display="block";
+  updStats();
+  updateXPDisplay();
+  gameState.totalAllTime++;
+  
+  // Buttons
+  for(var j=0;j<qCur.opts.length;j++){
+    var b=document.getElementById('qo'+j); if(b) b.disabled=true;
+    if(qCur.opts[j]===qCur.correct && b) b.className='quiz-opt correct';
+    else if(j===i&&!right && b) {
+      b.className='quiz-opt wrong';
+      b.classList.add('shake-wrong');
+    }
+  }
+  
+  var fb=document.getElementById('qfb');
+  if(fb){
+    fb.className='quiz-fb '+(right?'good':'bad');
+    fb.textContent=right?'✅ Correct!':'❌ Incorrect. Answer: '+qCur.correct;
+    fb.style.display='block';
+  }
+  
+  // Coaching tip
+  showTipCard(qCur.play.t, qCur.pos);
+  
+  document.getElementById('qnx').style.display='block';
+  
+  // Check badges
+  var newBadges = checkBadges();
+  updateBadgesDisplay();
+  saveGameState();
 }
+
+// Tab modification: add Profile tab
+function addProfileTab() {
+  var tabs = document.querySelector('.tabs');
+  if (!tabs || document.querySelector('[data-tab="profile"]')) return;
+  var profileBtn = document.createElement('button');
+  profileBtn.className = 'tab-btn';
+  profileBtn.setAttribute('data-tab', 'profile');
+  profileBtn.textContent = '🏆';
+  profileBtn.style.width = '15%';
+  // Adjust existing tabs
+  var existing = tabs.querySelectorAll('.tab-btn');
+  for (var i=0; i<existing.length; i++) {
+    existing[i].style.width = '28.33%';
+  }
+  tabs.appendChild(profileBtn);
+  profileBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var allTabs = document.querySelectorAll('.tab-btn');
+    for (var j=0; j<allTabs.length; j++) allTabs[j].className='tab-btn';
+    profileBtn.className='tab-btn active';
+    var secs = document.querySelectorAll('.section');
+    for (var j=0; j<secs.length; j++) secs[j].className='section';
+    document.getElementById('profile-section').className='section active';
+    updateXPDisplay();
+    updateBadgesDisplay();
+    document.getElementById('content-area').scrollTop=0;
+  });
+}
+
 
 // ── EVENT DELEGATION ──
 document.addEventListener('click', function(e) {
@@ -1449,6 +2001,10 @@ document.getElementById('quiz-change-pos').addEventListener('click', function(e)
 buildBrowseGrid();
 updStats();
 fixLayout();
+addProfileTab();
+updateXPDisplay();
+updateBadgesDisplay();
+
 </script>
 </body>
 </html>
