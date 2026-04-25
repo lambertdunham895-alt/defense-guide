@@ -1214,7 +1214,6 @@ function buildBrowseGrid() {
   var html = '<div class="play-grid">';
   for (var s=0; s<sits.length; s++) {
     var sit = sits[s];
-    html += '<div class="play-grid-sit">' + sitLabels[sit] + '</div>';
     // Get all plays for this sit, pair them into rows of 2
     var sitPlays = [];
     for (var i=0; i<PLAYS.length; i++) { if (PLAYS[i] && PLAYS[i].r===sit) sitPlays.push(i); }
