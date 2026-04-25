@@ -1047,21 +1047,6 @@ var PLBL = { P:"P", C:"C", B1:"1B", B2:"2B", SS:"SS", B3:"3B", LF:"LF", CF:"CF",
 var PORD = ["P","C","B1","B2","SS","B3","LF","CF","RF"];
 
 // Browse state (kept for bypos compatibility)
-var bSit  = "No Runners";
-var bType = "Fly ball";
-
-// Bypos state
-var bpPos  = null;
-var bpSit  = null;
-var bpType = null;
-
-function fixLayout() {
-  var ch = document.getElementById('chrome');
-  document.getElementById('content-area').style.top = ch.offsetHeight + 'px';
-}
-window.onload = fixLayout;
-window.onresize = fixLayout;
-
 var ARROWS = {
   "Fly ball|LF|No Runners": [[21.5, 32.2, 50.5, 38.9, "throw"], [45.2, 43.3, 30, 37, "move"], [50.1, 50.9, 50.5, 44, "move"], [49.5, 71.9, 67.0, 54.1, "move"], [50.0, 20.5, 21.5, 30, "move"], [78.1, 32.2, 65, 42, "move"]],
   "Fly ball|CF|No Runners": [[50.0, 20.5, 50.5, 38.9, "throw"], [50.1, 50.9, 50.5, 44, "move"], [49.5, 71.9, 67.0, 54.1, "move"], [21.5, 32.2, 35, 25, "move"], [78.1, 32.2, 65, 25, "move"]],
@@ -1174,8 +1159,8 @@ function makeSVG(play, hlPos, noArrows) {
   if (bp) s+='<circle cx="'+bp.x+'" cy="'+bp.y+'" r="2.2" fill="#f5c518" stroke="#9a7a00" stroke-width="0.5"/>';
   for (var i=0; i<PORD.length; i++) {
     var pos=PORD[i], pt=PC[pos], col=PCOL[pos], isHL=(pos===hlPos);
-    var op=(hlPos&&!isHL)?0.5:1, r=isHL?5.0:3.5, sw=isHL?1.0:0.5, stk=isHL?"#ffffff":"rgba(0,0,0,0.6)";
-    s+='<circle cx="'+pt.x+'" cy="'+pt.y+'" r="'+r+'" fill="'+col+'" opacity="'+op+'" stroke="'+stk+'" stroke-width="'+sw+'"/>';
+    var op=(hlPos&&!isHL)?0.5:1, rad=isHL?5.0:3.5, sw=isHL?1.0:0.5, stk=isHL?"#ffffff":"rgba(0,0,0,0.6)";
+    s+='<circle cx="'+pt.x+'" cy="'+pt.y+'" r="'+rad+'" fill="'+col+'" opacity="'+op+'" stroke="'+stk+'" stroke-width="'+sw+'"/>';
     s+='<text x="'+pt.x+'" y="'+(pt.y+1.2)+'" text-anchor="middle" dominant-baseline="middle" font-size="'+(isHL?3.2:2.6)+'" font-weight="bold" fill="#ffffff" opacity="'+op+'" font-family="Oswald,Arial,sans-serif">'+PLBL[pos]+'</text>';
   }
   // Draw arrows for this play
